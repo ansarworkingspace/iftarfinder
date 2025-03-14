@@ -17,6 +17,7 @@ const foodOptions = [
 export default function AddLocation() {
   const router = useRouter();
   const [selectedFoods, setSelectedFoods] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     location: '',
@@ -34,6 +35,7 @@ export default function AddLocation() {
 
                      const handleSubmit = async () => {
                       if (isFormValid) {
+                        setIsSubmitting(true);
                         try {
                           const response = await fetch('/api/addLocation', {
                             method: 'POST',
@@ -56,6 +58,8 @@ export default function AddLocation() {
                           }
                         } catch (error) {
                           console.error('Error adding location:', error);
+                        }finally {
+                          setIsSubmitting(false);
                         }
                       }
                     };
@@ -191,16 +195,23 @@ export default function AddLocation() {
             </div>
 
             <button 
-              onClick={handleSubmit}
-              disabled={!isFormValid}
-              className={`w-full py-3 rounded-lg transition-colors font-medium ${
-                isFormValid 
-                  ? 'bg-[#2d5a27] text-white hover:bg-[#2d5a27]/90' 
-                  : 'bg-[#2d5a27]/50 text-white/70 cursor-not-allowed'
-              }`}
-            >
-              Add Location
-            </button>
+  onClick={handleSubmit}
+  disabled={!isFormValid || isSubmitting}
+  className={`w-full py-3 rounded-lg transition-colors font-medium flex items-center justify-center gap-2 ${
+    isFormValid 
+      ? 'bg-[#2d5a27] text-white hover:bg-[#2d5a27]/90' 
+      : 'bg-[#2d5a27]/50 text-white/70 cursor-not-allowed'
+  }`}
+>
+  {isSubmitting ? (
+    <>
+      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+      <span>Adding...</span>
+    </>
+  ) : (
+    'Add Location'
+  )}
+</button>
           </div>
         </div>
       </div>

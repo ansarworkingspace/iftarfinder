@@ -266,13 +266,26 @@ export default function Home() {
                 Prophet Muhammad ﷺ
               </span>
             </div>
-            <p className="text-[#2d5a27]/60 text-xs uppercase tracking-wide">
-              Narrated by Tirmidhi
-            </p>
+            
           </div>
+        </div>
+
+        <div className="flex justify-center items-center text-sm text-[#2d5a27]/70 mt-4 mb-8">
+          <span>
+            Developed by{' '}
+            <a 
+              href="https://muhammedansaren.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[#2d5a27] hover:text-[#2d5a27]/80 transition-colors font-medium"
+            >
+              Muhammed Ansar E.N
+            </a>
+          </span>
         </div>
         
       </main>
     </div>
+
   );
 }
