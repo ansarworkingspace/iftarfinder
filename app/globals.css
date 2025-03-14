@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a3025;
+  --primary: #2d5a27;
+  --secondary: #3b7a3d;
+  --accent: #4a9c51;
+  --neutral-light: #f0f7f0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-amiri);
+  --font-decorative: var(--font-aref-ruqaa);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f1f0f;
+    --foreground: #e8f5e9;
+    --primary: #4caf50;
+    --secondary: #66bb6a;
+    --accent: #81c784;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+@keyframes scale-up {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-scale-up {
+  animation: scale-up 0.5s ease-out forwards;
+}
